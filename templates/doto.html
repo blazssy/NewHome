@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}Manipulate{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/table.css">
+
+<body>
+    <h1>Manipulate your data here <a href="/filter">Add New Task</a></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bedrooms</th>
+                <th>Square Footage</th>
+                <th>Area</th>
+                <th>Price</th>
+                <th>Bathrooms</th>
+                <th>Garage Size</th>
+                <th>Neighborhood Quality</th>
+                <th>Year Built</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in house %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.bedrooms }}</td>
+            <td>{{ task.square_footage }}</td>
+            <td>{{ task.area }}</td>
+            <td>{{ task.price }}</td>
+            <td>{{ task.bathrooms }}</td>
+            <td>{{ task.garage_size }}</td>
+            <td>{{ task.neighbourhood_quality }}</td>
+            <td>{{ task.year_built }}</td>
+            <td>
+                <button><a href="/update_task/{{ task.id }}">Edit</a></button>
+            </td>
+            <td>
+                <button onclick="confirmDelete({{ task.id }})">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function confirmDelete(taskId) {
+            const confirmation = confirm("Are you sure you want to delete this task?");
+            if (confirmation) {
+                fetch(`/delete/${taskId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Task deleted successfully.');
+                        location.reload(); // Refresh the page after deletion
+                    } else {
+                        return response.json().then(data => {
+                            alert(data.message || 'An error occurred.');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to delete the task.');
+                });
+            }
+        }
+    </script>
+</body>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% include "base.html" %}
+{% block title %}Filters{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/main.css">
+<div class="container">
+    <h1>Property Details Form</h1>
+    <form action="/submit" method="post">
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <input type="text" id="bedrooms" name="bedrooms" required>
+
+        <label for="square_footage">Square Footage:</label>
+        <input type="text" id="square_footage" name="square_footage" required>
+
+        <label for="area">Area:</label>
+        <select id="area" name="area" required>
+            <option value="vijayanagar">Vijayanagar</option>
+            <option value="jayanagar">Jayanagar</option>
+            <option value="malleshwaram">Malleshwaram</option>
+            <option value="jp_nagar">JP Nagar</option>
+            <option value="mg_road">MG Road</option>
+            <option value="church_street">Church Street</option>
+        </select>
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required>
+
+        <label for="bathrooms">Number of Bathrooms:</label>
+        <input type="text" id="bathrooms" name="bathrooms" required>
+
+        <label for="year_built">Year Built:</label>
+        <input type="text" id="year_built" name="year_built" required>
+
+        <label for="garage_size">Garage Size:</label>
+        <input type="text" id="garage_size" name="garage_size">
+
+        <label for="neighbourhood_quality">Neighbourhood Quality:</label>
+        <input type="text" id="neighbourhood_quality" name="neighbourhood_quality" required>
+
+        <input type="submit" value="Submit">
+
+        <a href="/index" class="next-button">Next</a>
+    </form>
+</div>
+{% endblock %}

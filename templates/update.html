@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Update House | App{% endblock %}
+
+{% block content %}
+<h1>Update House</h1>
+<form method="POST" enctype="application/x-www-form-urlencoded" class="update-form">
+
+    <div class="form-group">
+        <label for="bedrooms">Bedrooms:</label>
+        <input type="number" id="bedrooms" name="bedrooms" value="{{ house.bedrooms }}" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="square_footage">Square Footage:</label>
+        <input type="number" id="square_footage" name="square_footage" value="{{ house.square_footage }}" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="area">Area:</label>
+        <input type="text" id="area" name="area" value="{{ house.area }}" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="{{ house.price }}" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="bathrooms">Bathrooms:</label>
+        <input type="number" id="bathrooms" name="bathrooms" value="{{ house.bathrooms }}" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="year_built">Year Built:</label>
+        <input type="number" id="year_built" name="year_built" value="{{ house.year_built }}" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="garage_size">Garage Size:</label>
+        <input type="number" id="garage_size" name="garage_size" value="{{ house.garage_size }}" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="neighbourhood_quality">Neighbourhood Quality:</label>
+        <input type="text" id="neighbourhood_quality" name="neighbourhood_quality" value="{{ house.neighbourhood_quality }}" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="/" class="btn btn-secondary">All Houses</a>
+</form>
+{% endblock %}
