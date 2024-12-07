@@ -1,1 +1,160 @@
-{% include "base.html" %}
+<link re<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+    <style>
+        /* General Reset */
+body, h1, h2, p, label, input, textarea, button {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+
+  body {
+    line-height: 1.6;
+    background: #f9f9f9;
+  }
+
+  /* Header Section */
+  .hero {
+    background: #0078d4;
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 1.2em;
+  }
+
+  /* Contact Section */
+  .contact-section {
+    padding: 50px 20px;
+    background: #fff;
+  }
+
+  .contact-section .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Contact Form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #0078d4;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background: #0078d4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .btn:hover {
+    background: #005fa3;
+  }
+
+  /* Footer */
+  .footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .footer p {
+    font-size: 0.9em;
+  }
+    </style>
+     <link rel="stylesheet" href="/static/main.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="navbar">
+    <a href="/base" class="logo">New Home</a>
+    <div class="menu">
+        <a href="/">Home</a>
+        <a href="/filter">Filters</a>
+        <a href="/about">About Us</a>
+        <a href="/contact">Contact</a>
+        <a href="/manipulate">ManipulateData</a>
+    </div>
+    <a href="#login" class="cta">Login</a>
+</nav>
+  <header class="hero">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you! Get in touch with us using the form below.</p>
+    </div>
+  </header>
+
+  <main class="contact-section">
+    <div class="container">
+      <h2>Get in Touch</h2>
+      <form action="#" method="POST" class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Write your message" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>l="stylesheet" href="styles.css">
