@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}House Data Chart{% endblock %}
+
+{% block content %}
+<h1>House Data Chart</h1>
+<div class="container">
+    <canvas id="houseChart" width="400" height="200"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Initialize chart with empty data
+    var ctx = document.getElementById('houseChart').getContext('2d');
+    var houseChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [
+                {
+                    label: 'Bedrooms',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Square Footage',
+                    data: [],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Price',
+                    data: [],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Bathrooms',
+                    data: [],
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Garage Size',
+                    data: [],
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Neighbourhood Quality',
+                    data: [],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Year Built',
+                    data: [],
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Function to fetch new data and update the chart
+    function fetchDataAndUpdateChart() {
+        fetch('/api/house_data')
+            .then(response => response.json())
+            .then(data => {
+                houseChart.data.labels = data.labels;
+                houseChart.data.datasets[0].data = data.bedrooms;
+                houseChart.data.datasets[1].data = data.square_footages;
+                houseChart.data.datasets[2].data = data.prices;
+                houseChart.data.datasets[3].data = data.bathrooms;
+                houseChart.data.datasets[4].data = data.garage_sizes;
+                houseChart.data.datasets[5].data = data.neighbourhood_qualities;
+                houseChart.data.datasets[6].data = data.year_built;
+                houseChart.update();
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Initial data fetch and chart update
+    fetchDataAndUpdateChart();
+
+    // Set interval for periodic updates (e.g., every 5 seconds)
+    setInterval(fetchDataAndUpdateChart, 5000);
+</script>
+{% endblock %}

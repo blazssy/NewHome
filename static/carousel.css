@@ -4,11 +4,11 @@
         .carousel-item img {
             filter: brightness(70%);
             object-fit: cover;
-            height: 93vh;
+            height: 100vh;
         }
         .carousel-caption {
             position: absolute;
-            top: 50%;
+            top: 20%;
             transform: translateY(-50%);
             background: rgba(0, 0, 0, 0.5);
             padding: 20px;

@@ -39,6 +39,34 @@ def house():
     return render_template('house.html', houses=houses)
 
 
+@flask_app.route('/house_chart')
+def house_chart():
+    houses = Homes.query.all()  # Get all house entries
+
+    # Prepare data for Chart.js
+    labels = [house.area for house in houses]
+    prices = [house.price for house in houses]
+    square_footages = [house.square_footage for house in houses]
+
+    return render_template('house_chart.html', labels=labels, prices=prices, square_footages=square_footages)
+
+@flask_app.route('/api/house_data')
+def house_data():
+    houses = Homes.query.all()
+    data = {
+        'labels': [house.area for house in houses],
+        'bedrooms': [house.bedrooms for house in houses],
+        'square_footages': [house.square_footage for house in houses],
+        'prices': [house.price for house in houses],
+        'bathrooms': [house.bathrooms for house in houses],
+        'garage_sizes': [house.garage_size for house in houses],
+        'neighbourhood_qualities': [house.neighbourhood_quality for house in houses],
+        'year_built': [house.year_built for house in houses]
+    }
+    return jsonify(data)
+
+
+
 @flask_app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update_house(id):
     houses = Homes.query.get_or_404(id)
