@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Full-Screen Carousel</title>
+    <link rel="stylesheet" href="/static/carousel.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Additional Styling for Navbar */
+        .navbar {
+            background: #49104B;
+        }
+        .navbar-brand, .nav-link {
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+        .navbar-brand:hover, .nav-link:hover {
+            color: #ffdd00;
+        }
+        .carousel-item img {
+            object-fit: cover;
+            height: 90vh;
+            width: 100%;
+            filter: brightness(70%);
+        }
+        .carousel-gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient;
+            z-index: 1;
+        }
+        .carousel-caption {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-30%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+        .navbar .cta {
+            padding: 8px 20px;
+            background-color: #ffdd00;
+            color: #5F0210;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .navbar .cta:hover {
+            background-color: #5F0058;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/index">NewHome</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/filter">Add House</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a href="/login" class="cta">Login</a>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="creativeCarousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#creativeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#creativeCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#creativeCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://wallpaperaccess.com/full/2056378.jpg" alt="Slide 1">
+                <div class="carousel-gradient-overlay"></div>
+                <div class="carousel-caption">
+                    <h1>Discover Your Dream Home</h1>
+                    <p>Unmatched luxury and comfort at your fingertips.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://png.pngtree.com/background/20230519/original/pngtree-modern-house-exterior-design-in-india-picture-image_2651642.jpg" alt="Slide 2">
+                <div class="carousel-gradient-overlay"></div>
+                <div class="carousel-caption">
+                    <h1>Modern Designs</h1>
+                    <p>Innovative architecture to suit your lifestyle.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://cdn.wallpapersafari.com/29/50/Sgj6wL.jpg" alt="Slide 3">
+                <div class="carousel-gradient-overlay"></div>
+                <div class="carousel-caption">
+                    <h1>Affordable Luxury</h1>
+                    <p>Find homes that blend affordability with elegance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#creativeCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#creativeCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{%block content %}
+<body style="margin: 0; font-family: Arial, sans-serif; background: url('https://e1.pxfuel.com/desktop-wallpaper/703/216/desktop-wallpaper-livingroom-modern-interior-home-design-backgrounds-amazing-cool-smart-phone-high-definition-1920x1200-amazing-home.jpg') no-repeat center center fixed; background-size: cover;">
+  <header style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; text-align: center; background: rgba(0, 0, 0, 0.6); position: relative;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 1rem; z-index: 2;">
+      <h1 style="font-size: 3.5rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Contact Us</h1>
+      <p style="font-size: 1.3rem; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">We'd love to hear from you! Get in touch with us using the form below and we'll respond as soon as possible.</p>
+    </div>
+  </header>
+
+  <main style="padding: 2rem 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); margin-top: -50vh; z-index: 1; position: relative; box-shadow: 0 -10px 20px rgba(0,0,0,0.1);">
+    <div style="max-width: 800px; margin: 0 auto; padding: 1rem;">
+      <h2 style="color: #6a0dad; border-bottom: 3px solid #ffeb3b; padding-bottom: 10px; margin-bottom: 1.5rem;">Get in Touch</h2>
+      <form action="#" method="POST" style="margin-bottom: 1rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <label for="name" style="display: block; margin-bottom: 0.75rem; font-weight: bold; color: #6a0dad;">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required style="width: 100%; padding: 0.75rem; border: 2px solid #e6d2ff; border-radius: 8px; transition: all 0.3s ease; background: #fff6ff;"
+            onfocus="this.style.borderColor='#ab66ff'; this.style.boxShadow='0 0 0 3px rgba(171, 102, 255, 0.2)'"
+            onblur="this.style.borderColor='#e6d2ff'; this.style.boxShadow='none'">
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label for="email" style="display: block; margin-bottom: 0.75rem; font-weight: bold; color: #6a0dad;">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required style="width: 100%; padding: 0.75rem; border: 2px solid #e6d2ff; border-radius: 8px; transition: all 0.3s ease; background: #fff6ff;"
+            onfocus="this.style.borderColor='#ab66ff'; this.style.boxShadow='0 0 0 3px rgba(171, 102, 255, 0.2)'"
+            onblur="this.style.borderColor='#e6d2ff'; this.style.boxShadow='none'">
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+          <label for="message" style="display: block; margin-bottom: 0.75rem; font-weight: bold; color: #6a0dad;">Your Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required style="width: 100%; padding: 0.75rem; border: 2px solid #e6d2ff; border-radius: 8px; transition: all 0.3s ease; background: #fff6ff; resize: vertical;"
+            onfocus="this.style.borderColor='#ab66ff'; this.style.boxShadow='0 0 0 3px rgba(171, 102, 255, 0.2)'"
+            onblur="this.style.borderColor='#e6d2ff'; this.style.boxShadow='none'"></textarea>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <button type="submit" style="flex-grow: 1; padding: 0.9rem 1.5rem; border: none; background: linear-gradient(to right, #ab66ff 0%, #ffeb3b 100%); color: black; font-size: 1.1rem; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: bold;"
+            onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.2)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            Send Message
+          </button>
+          <a href="index.html" style="flex-grow: 1; display: inline-block; text-align: center; padding: 0.9rem 1.5rem; border: none; background-color: #ffeb3b; color: black; font-size: 1.1rem; border-radius: 8px; cursor: pointer; text-decoration: none; transition: all 0.3s ease; font-weight: bold;"
+            onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.2)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            Back to Home
+          </a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer style="background: rgba(0,0,0,0.8); color: #fff; text-align: center; padding: 1.5rem 0;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 1rem;">
+      <p style="margin: 0; color: #f0f0f0;">&copy; 2024 Your Company. All rights reserved.</p>
+      <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
+        <a href="#" style="color: #ab66ff; text-decoration: none;">Privacy Policy</a>
+        <a href="#" style="color: #ffeb3b; text-decoration: none;">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+</body>
+{%endblock%}

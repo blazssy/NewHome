@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}Manipulate{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    thead {
+        background-color: #F2E6F2; /* Light shade of the purple color */
+    }
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #E6CCE6; /* Slightly darker light purple for border */
+        transition: background-color 0.3s ease;
+    }
+    th {
+        font-weight: 600;
+        color: #49104B; /* Original dark purple color for text */
+        text-transform: uppercase;
+        font-size: 0.9em;
+    }
+    tbody tr:hover {
+        background-color: #F7F0F7; /* Very light purple hover effect */
+    }
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+    button {
+        background-color: #FFD700; /* Yellow color for buttons */
+        color: #49104B;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+    button:hover {
+        background-color: #FFC107; /* Slightly darker yellow on hover */
+        transform: scale(1.05);
+    }
+    button a {
+        color: #49104B;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+    <h1>Manipulate your data here <a href="/filter">Change requirement</a></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Bedrooms</th>
+                <th>Square Footage</th>
+                <th>Area</th>
+                <th>Price</th>
+                <th>Bathrooms</th>
+                <th>Garage Size</th>
+                <th>Neighborhood Quality</th>
+                <th>Year Built</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in house %}
+        <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.bedrooms }}</td>
+            <td>{{ task.square_footage }}</td>
+            <td>{{ task.area }}</td>
+            <td>{{ task.price }}</td>
+            <td>{{ task.bathrooms }}</td>
+            <td>{{ task.garage_size }}</td>
+            <td>{{ task.neighbourhood_quality }}</td>
+            <td>{{ task.year_built }}</td>
+            <td>
+                <button><a href="/update_task/{{ task.id }}">Edit</a></button>
+            </td>
+            <td>
+                <button onclick="confirmDelete({{ task.id }})">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function confirmDelete(taskId) {
+            const confirmation = confirm("Are you sure you want to delete this task?");
+            if (confirmation) {
+                fetch(`/delete/${taskId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Task deleted successfully.');
+                        location.reload(); // Refresh the page after deletion
+                    } else {
+                        return response.json().then(data => {
+                            alert(data.message || 'An error occurred.');
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to delete the task.');
+                });
+            }
+        }
+    </script>
+</body>
+{% endblock %}

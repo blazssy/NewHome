@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block title %}Property Details Form{% endblock %}
+{% block content %}
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+  }
+  .container {
+    position: relative;
+    background-image: url('https://i.pinimg.com/originals/13/af/f2/13aff267b4aeff01cadb3d5f276b8ef2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Ensures the background covers the entire viewport */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  h1 {
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-family: 'Arial', sans-serif;
+  }
+  form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+  }
+  form label {
+    font-size: 1rem;
+    color: #333;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  form input, form select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  form input[type="submit"] {
+    background: #49104B;
+    border: none;
+    color: white;
+    padding: 0.7rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease-in-out;
+  }
+  form input[type="submit"]:hover {
+    background: yellow;
+    color: black;
+  }
+  .next-button {
+    display: inline-block;
+    background: #49104B;
+    color: white;
+    padding: 0.7rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+  }
+  .next-button:hover {
+    background: yellow;
+    color: black;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+<div class="container">
+  <div class="overlay"></div>
+  <div style="position: relative; z-index: 2;">
+    <h1>Property Details Form</h1>
+    <form action="/submit" method="post">
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <input type="text" id="bedrooms" name="bedrooms" required>
+
+        <label for="square_footage">Square Footage:</label>
+        <input type="text" id="square_footage" name="square_footage" required>
+
+        <label for="area">Area:</label>
+        <select id="area" name="area" required>
+            <option value="vijayanagar">Vijayanagar</option>
+            <option value="jayanagar">Jayanagar</option>
+            <option value="malleshwaram">Malleshwaram</option>
+            <option value="jp_nagar">JP Nagar</option>
+            <option value="mg_road">MG Road</option>
+            <option value="church_street">Church Street</option>
+        </select>
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" required>
+
+        <label for="bathrooms">Number of Bathrooms:</label>
+        <input type="text" id="bathrooms" name="bathrooms" required>
+
+        <label for="year_built">Year Built:</label>
+        <input type="text" id="year_built" name="year_built" required>
+
+        <label for="garage_size">Garage Size:</label>
+        <input type="text" id="garage_size" name="garage_size">
+
+        <label for="neighbourhood_quality">Neighbourhood Quality:</label>
+        <input type="text" id="neighbourhood_quality" name="neighbourhood_quality" required>
+
+        <input type="submit" value="Submit">
+        <div style="align-items: center; margin-top: 1rem;"><a href='/house' class="next-button">Next</a></div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{%block content %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp3049344.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #410A47; /* Ensures the text is visible over the background */
+        }
+    </style>
+
+<body style="background-image: url('https://wallpapercave.com/wp/wp3049344.jpg'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; color: #410A47;">
+    <div class="login-container" style="background: rgba(128, 128, 128, 0.8); padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); width: 600px; max-width: 900px;">
+        <h2 style="text-align: center; margin-bottom: 20px; color: #fff;">Admin Login</h2>
+        <form action="doto.html" method="post">
+            <div class="mb-3">
+                <label for="adminUsername" class="form-label" style="font-weight: bold; color: #fff;">Username</label>
+                <input type="text" class="form-control" id="adminUsername" placeholder="Enter your username" required>
+            </div>
+            <div class="mb-3">
+                <label for="adminPassword" class="form-label" style="font-weight: bold; color: #fff;">Password</label>
+                <input type="password" class="form-control" id="adminPassword" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" style="background-color: #410A47; border-color: #410A47;">Login as Admin</button>
+            <div class="form-text">
+                <a href="index.html" style="color: black; font-weight: bold; text-decoration: underline;">Back to Home</a>
+            </div>
+        </form>
+    </div>
+{%endblock%}

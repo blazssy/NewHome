@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}House Page{% endblock %}
+
+{% block head %}
+   <link rel="stylesheet" href="/static/house.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div style="max-width: 100%; padding: 0 15px;">
+    <div style="position: sticky; top: 0; background-color: white; z-index: 1000; padding: 15px 0; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Filter</button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Filter by choice</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form id="filter-form" class="mb-4">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="bedrooms-filter" style="color: black;">Bedrooms:</label>
+                            <input type="number" id="bedrooms-filter" class="form-control">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="area-filter" style="color: black;">Area:</label>
+                            <select id="area-filter" class="form-control">
+                                <option value="">All</option>
+                                <option value="vijayanagar">Vijayanagar</option>
+                                <option value="jayanagar">Jayanagar</option>
+                                <option value="malleshwaram">Malleshwaram</option>
+                                <option value="jp_nagar">JP Nagar</option>
+                                <option value="mg_road">MG Road</option>
+                                <option value="church_street">Church Street</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                           <label for="price-filter" style="color: black;">Max Price:</label>
+                            <input type="number" id="price-filter" class="form-control">
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="bathrooms-filter" style="color: black;">Bathrooms:</label>
+                            <input type="number" id="bathrooms-filter" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" id="filter-button" class="btn btn-primary" style="color: black;">Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="house-cards" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: flex-start; max-height: calc(100vh - 250px); overflow-y: auto; padding-right: 15px;">
+       {% for house in houses %}
+       <div class="col-md-4 house-card" style="flex: 0 0 calc(33.333% - 15px); max-width: calc(33.333% - 15px); margin-bottom: 15px;" data-id="{{ house.id }}" data-bedrooms="{{ house.bedrooms }}" data-area="{{ house.area }}" data-price="{{ house.price }}" data-bathrooms="{{ house.bathrooms }}" data-square_footage="{{ house.square_footage }}">
+           <div class="card mb-4" style="height: 100%; display: flex; flex-direction: column;">
+             <img src="{{ url_for('static', filename='images/f.jpeg') }}" class="card-img-top" alt="House Image">
+             <div class="card-body" style="flex-grow: 1;">
+               <h5 class="card-title">{{ house.bedrooms }} Bedrooms</h5>
+               <p class="card-text">Square Footage: {{ house.square_footage }} sqft</p>
+               <p class="card-text">Area: {{ house.area }}</p>
+               <p class="card-text">Price: ${{ house.price }}</p>
+               <p class="card-text">Bathrooms: {{ house.bathrooms }}</p>
+               <p class="card-text">Year Built: {{ house.year_built }}</p>
+               <p class="card-text">Garage Size: {{ house.garage_size }} cars</p>
+               <p class="card-text">Neighbourhood Quality: {{ house.neighbourhood_quality }}</p>
+               <a href="#" class="next-button" onclick="viewHouseDataChart(event, {{ house.id }})">View House Data Chart</a>
+               <canvas id="chart-{{ house.id }}" style="display:none;"></canvas>
+             </div>
+           </div>
+       </div>
+       {% else %}
+       <p class="no-houses-message">No houses available.</p>
+       {% endfor %}
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    // The JavaScript remains the same as in the original file
+    document.getElementById('filter-button').addEventListener('click', function() {
+        let bedrooms = document.getElementById('bedrooms-filter').value;
+        let area = document.getElementById('area-filter').value;
+        let max_price = document.getElementById('price-filter').value;
+        let bathrooms = document.getElementById('bathrooms-filter').value;
+
+        fetch(`/api/filter_houses?bedrooms=${bedrooms}&area=${area}&max_price=${max_price}&bathrooms=${bathrooms}`)
+            .then(response => response.json())
+            .then(data => {
+                const houseCards = document.getElementById('house-cards');
+                houseCards.innerHTML = '';
+                data.forEach(house => {
+                    const card = document.createElement('div');
+                    card.className = 'col-md-4 house-card';
+                    card.style.flex = '0 0 calc(33.333% - 15px)';
+                    card.style.maxWidth = 'calc(33.333% - 15px)';
+                    card.style.marginBottom = '15px';
+                    card.dataset.id = house.id;
+                    card.dataset.bedrooms = house.bedrooms;
+                    card.dataset.area = house.area;
+                    card.dataset.price = house.price;
+                    card.dataset.bathrooms = house.bathrooms;
+                    card.dataset.square_footage = house.square_footage;
+                    card.innerHTML = `
+                        <div class="card mb-4" style="height: 100%; display: flex; flex-direction: column;">
+                            <img src="{{ url_for('static', filename='images/f.jpeg') }}" class="card-img-top" alt="House Image">
+                            <div class="card-body" style="flex-grow: 1;">
+                                <h5 class="card-title">${house.bedrooms} Bedrooms</h5>
+                                <p class="card-text">Square Footage: ${house.square_footage} sqft</p>
+                                <p class="card-text">Area: ${house.area}</p>
+                                <p class="card-text">Price: $${house.price}</p>
+                                <p class="card-text">Bathrooms: ${house.bathrooms}</p>
+                                <p class="card-text">Year Built: ${house.year_built}</p>
+                                <p class="card-text">Garage Size: ${house.garage_size} cars</p>
+                                <p class="card-text">Neighbourhood Quality: ${house.neighbourhood_quality}</p>
+                                <a href="#" class="next-button" onclick="viewHouseDataChart(event, ${house.id})">View House Data Chart</a>
+                                <canvas id="chart-${house.id}" style="display:none;"></canvas>
+                            </div>
+                        </div>
+                    `;
+                    houseCards.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+
+    function viewHouseDataChart(event, houseId) {
+        event.preventDefault();
+        const chartCanvas = document.getElementById(`chart-${houseId}`);
+        const ctx = chartCanvas.getContext('2d');
+        chartCanvas.style.display = 'block';
+
+        const houseCard = document.querySelector(`.house-card[data-id="${houseId}"]`);
+
+        const data = {
+            labels: ['Bedrooms', 'Square Footage', 'Price', 'Bathrooms'],
+            datasets: [{
+                label: 'House Data',
+                data: [
+                    houseCard.dataset.bedrooms,
+                    houseCard.dataset.square_footage,
+                    houseCard.dataset.price,
+                    houseCard.dataset.bathrooms,
+                ],
+                backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+                borderColor: ['rgba(75, 192, 192, 1)'],
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
+{% endblock %}
